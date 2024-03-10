@@ -9376,6 +9376,24 @@ int clconnectxx(int ndevice)
 
 /************* SERVICES ******************/
 
+int find_nodes_by_name(const char *name, int *nodes_buf, int buflen)
+{
+	int n;
+	int found_cnt = 0;
+
+	if (nodes_buf == NULL) return -1;
+	if (buflen <= 0) return -2;
+
+	for (n = 0; devok(n) != 0 && found_cnt < (buflen-1); ++n) {
+		if (strcmp(dev[n]->name, name) == 0) {
+			nodes_buf[found_cnt] = dev[n]->node;
+			found_cnt += 1;
+		}
+	}
+	nodes_buf[found_cnt] = 0;
+	return found_cnt;
+}
+
 int find_channel(int node,int flag,unsigned char *uuid)
   {
   int flags,retval,ndevice;

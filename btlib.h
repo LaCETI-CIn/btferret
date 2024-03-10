@@ -99,6 +99,7 @@ char *device_name(int node);
 int device_type(int node);
 int disconnect_node(int node);
 
+int find_nodes_by_name(const char *name, int *nodes_buf, int buflen);
 int find_channel(int node,int flag,unsigned char *uuid);
 int find_ctics(int node);
 int find_ctic_index(int node,int flag,unsigned char *uuid);
